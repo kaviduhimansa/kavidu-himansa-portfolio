@@ -32,21 +32,18 @@ const Skills = () => {
   }, []);
 
   const skills = [
-    { name: 'Python', level: 85, color: '#B0F060' },
     { name: 'Java', level: 75, color: '#B0F060' },
-    { name: 'Kotlin', level: 65, color: '#B0F060' },
     { name: 'React', level: 90, color: '#FF9800' },
     { name: 'Vue.js', level: 60, color: '#FF9800' },
     { name: 'TailwindCSS', level: 95, color: '#FF9800' },
     { name: 'PHP', level: 50, color: '#8E44AD' },
     { name: 'Node.js', level: 70, color: '#8E44AD' },
-    { name: 'Firebase', level: 45, color: '#8E44AD' },
     { name: 'HTML', level: 95, color: '#303F9F' },
     { name: 'CSS', level: 90, color: '#303F9F' },
     { name: 'JavaScript', level: 80, color: '#303F9F' },
-    { name: 'MongoDB', level: 60, color: '#E91E63' },
     { name: 'SQL', level: 70, color: '#E91E63' },
-    { name: 'C', level: 55, color: '#E91E63' },
+    { name: 'C++', level: 55, color: '#E91E63' },
+    { name: 'C#', level: 60, color: '#E91E63' }, // Added C# here
   ];
 
   return (
