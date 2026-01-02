@@ -1,93 +1,80 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Skills = () => {
-  // 1. State to track if the section is visible
-  const [isVisible, setIsVisible] = useState(false);
-  // 2. Ref to target the section DOM element
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        // If the user sees the section, start animation
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Optional: Stop observing once animation starts (optimization)
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 } // Trigger when 10% of the section is visible
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
+  
+  // Standard professional colors for each technology
   const skills = [
-    { name: 'Java', level: 75, color: '#B0F060' },
-    { name: 'React', level: 90, color: '#FF9800' },
-    { name: 'Vue.js', level: 60, color: '#FF9800' },
-    { name: 'TailwindCSS', level: 95, color: '#FF9800' },
-    { name: 'PHP', level: 50, color: '#8E44AD' },
-    { name: 'Node.js', level: 70, color: '#8E44AD' },
-    { name: 'HTML', level: 95, color: '#303F9F' },
-    { name: 'CSS', level: 90, color: '#303F9F' },
-    { name: 'JavaScript', level: 80, color: '#303F9F' },
-    { name: 'SQL', level: 70, color: '#E91E63' },
-    { name: 'C++', level: 55, color: '#E91E63' },
-    { name: 'C#', level: 60, color: '#E91E63' }, // Added C# here
+    { name: 'Java', level: 75, color: '#B0F060' },       // Neon Green
+    { name: 'React', level: 90, color: '#00D8FF' },      // Cyan
+    { name: 'Vue.js', level: 60, color: '#42b883' },     // Vue Green
+    { name: 'TailwindCSS', level: 95, color: '#38BDF8' },// Sky Blue
+    { name: 'PHP', level: 50, color: '#777BB4' },       // Purple
+    { name: 'Node.js', level: 70, color: '#8CC84B' },    // Node Green
+    { name: 'HTML', level: 95, color: '#E34F26' },       // Orange Red
+    { name: 'CSS', level: 90, color: '#2965F1' },        // Blue
+    { name: 'JavaScript', level: 80, color: '#F7DF1E' }, // Bright Yellow
+    { name: 'SQL', level: 70, color: '#F29111' },       // Orange
+    { name: 'C++', level: 55, color: '#00599C' },        // Dark Blue
+    { name: 'C#', level: 60, color: '#9B4F96' },         // Purple
   ];
 
   return (
-    <section 
-      id="skills" 
-      ref={sectionRef} // Attach the Ref here
-      className="bg-slate-950 text-white py-16 px-4 md:px-16 rounded-xl"
-    >
+    <section id="skills" className="bg-slate-950 text-white py-20 px-4 md:px-16">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
+        
+        {/* CLEAN HEADING (No Scramble Effect) */}
+        <motion.h2 
+          className="text-3xl md:text-4xl font-extrabold text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="text-white">MY</span>
           {' '}
           <span className="text-amber-300">SKILLS</span>
-        </h2>
+        </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* SKILLS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
           {skills.map((skill, index) => (
-            <div key={index} className="mb-2">
-              <div className="flex justify-between text-gray-300 mb-1">
-                <span className="font-medium">{skill.name}</span>
-                <span>{skill.level}%</span>
+            <div key={index} className="mb-4">
+              
+              {/* Skill Name & Percentage */}
+              <div className="flex justify-between text-gray-300 mb-2">
+                <span className="font-bold tracking-wide">{skill.name}</span>
+                <span className="text-sm text-gray-400 font-mono">{skill.level}%</span>
               </div>
               
-              <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                <div
-                  className="h-2 rounded-full"
-                  style={{ 
-                    // 1. Width Logic: 0% initially, then full % when visible
-                    width: isVisible ? `${skill.level}%` : '0%', 
-                    backgroundColor: skill.color,
-                    boxShadow: `0 0 8px ${skill.color}60`,
-                    
-                    // 2. Animation Logic
-                    transition: 'width 1.5s ease-out',
-                    
-                    // 3. Stagger Logic: Delay each bar by index * 0.1s
-                    // Example: 1st bar waits 0s, 2nd waits 0.1s, 3rd waits 0.2s...
-                    transitionDelay: `${index * 0.1}s` 
+              {/* Progress Bar Background */}
+              <div className="w-full bg-gray-800 rounded-full h-3 overflow-hidden border border-gray-700">
+                
+                {/* Animated Fill Bar */}
+                <motion.div
+                  className="h-full rounded-full relative"
+                  style={{ backgroundColor: skill.color }}
+                  
+                  // Animation: Slide from 0 to full width
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  
+                  // Transition: Smooth ease-out, staggered by index
+                  transition={{ 
+                    duration: 1, 
+                    ease: "easeOut", 
+                    delay: index * 0.05 
                   }}
-                ></div>
+                  viewport={{ once: true }} // Ensures it only animates the first time you scroll to it
+                >
+                  {/* Optional: Subtle Glow on the bar itself */}
+                  <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/30 blur-[2px]"></div>
+                </motion.div>
+
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
