@@ -47,7 +47,7 @@ function App() {
         <section id="skills" className="py-16 min-h-screen">
           <Skills />
         </section>
-        
+
         <section id="projects" className="py-16 min-h-screen">
           <Projects />
         </section>

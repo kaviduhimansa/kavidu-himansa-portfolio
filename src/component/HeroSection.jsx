@@ -58,7 +58,7 @@ const HeroSection = () => {
         
         {/* Text Section */}
         <div className="text-center md:text-left">
-          <p className="text-sm text-gray-400 mb-2">— I'M KAVINDU BANDARA, I'M 23 YEARS OLD</p>
+          <p className="text-sm text-cyan-400 mb-2 font-semibold tracking-wide">HELLO, I'M KAVINDU BANDARA</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
             BSC HONS IT<br />(3rd Year at BCI Campus)
           </h1>

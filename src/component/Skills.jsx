@@ -1,83 +1,77 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FaCode, FaDatabase, FaJava } from 'react-icons/fa';
+import {
+  SiCplusplus,
+  SiCss3,
+  SiHtml5,
+  SiJavascript,
+  SiNodedotjs,
+  SiPhp,
+  SiReact,
+  SiTailwindcss,
+  SiVuedotjs,
+} from 'react-icons/si';
 
-const Skills = () => {
-  
-  // Standard professional colors for each technology
-  const skills = [
-    { name: 'Java', level: 75, color: '#B0F060' },       // Neon Green
-    { name: 'React', level: 90, color: '#00D8FF' },      // Cyan
-    { name: 'Vue.js', level: 60, color: '#42b883' },     // Vue Green
-    { name: 'TailwindCSS', level: 95, color: '#38BDF8' },// Sky Blue
-    { name: 'PHP', level: 50, color: '#777BB4' },       // Purple
-    { name: 'Node.js', level: 70, color: '#8CC84B' },    // Node Green
-    { name: 'HTML', level: 95, color: '#E34F26' },       // Orange Red
-    { name: 'CSS', level: 90, color: '#2965F1' },        // Blue
-    { name: 'JavaScript', level: 80, color: '#F7DF1E' }, // Bright Yellow
-    { name: 'SQL', level: 70, color: '#F29111' },       // Orange
-    { name: 'C++', level: 55, color: '#00599C' },        // Dark Blue
-    { name: 'C#', level: 60, color: '#9B4F96' },         // Purple
-  ];
+const skills = [
+  { name: 'Java', icon: FaJava, color: '#ED8B00' },
+  { name: 'React', icon: SiReact, color: '#61DAFB' },
+  { name: 'Vue.js', icon: SiVuedotjs, color: '#42B883' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8' },
+  { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+  { name: 'Node.js', icon: SiNodedotjs, color: '#8CC84B' },
+  { name: 'HTML', icon: SiHtml5, color: '#E34F26' },
+  { name: 'CSS', icon: SiCss3, color: '#2965F1' },
+  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+  { name: 'SQL', icon: FaDatabase, color: '#F29111' },
+  { name: 'C++', icon: SiCplusplus, color: '#00599C' },
+  { name: 'C#', icon: FaCode, color: '#9B4F96' },
+];
 
-  return (
-    <section id="skills" className="bg-slate-950 text-white py-20 px-4 md:px-16">
-      <div className="max-w-6xl mx-auto">
-        
-        {/* CLEAN HEADING (No Scramble Effect) */}
-        <motion.h2 
-          className="text-3xl md:text-4xl font-extrabold text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-white">MY</span>
-          {' '}
-          <span className="text-amber-300">SKILLS</span>
-        </motion.h2>
-        
-        {/* SKILLS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
-          {skills.map((skill, index) => (
-            <div key={index} className="mb-4">
-              
-              {/* Skill Name & Percentage */}
-              <div className="flex justify-between text-gray-300 mb-2">
-                <span className="font-bold tracking-wide">{skill.name}</span>
-                <span className="text-sm text-gray-400 font-mono">{skill.level}%</span>
-              </div>
-              
-              {/* Progress Bar Background */}
-              <div className="w-full bg-gray-800 rounded-full h-3 overflow-hidden border border-gray-700">
-                
-                {/* Animated Fill Bar */}
-                <motion.div
-                  className="h-full rounded-full relative"
-                  style={{ backgroundColor: skill.color }}
-                  
-                  // Animation: Slide from 0 to full width
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  
-                  // Transition: Smooth ease-out, staggered by index
-                  transition={{ 
-                    duration: 1, 
-                    ease: "easeOut", 
-                    delay: index * 0.05 
-                  }}
-                  viewport={{ once: true }} // Ensures it only animates the first time you scroll to it
-                >
-                  {/* Optional: Subtle Glow on the bar itself */}
-                  <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/30 blur-[2px]"></div>
-                </motion.div>
+const Skills = () => (
+  <section className="bg-slate-950 px-4 py-20 text-white md:px-16">
+    <div className="mx-auto max-w-6xl">
+      <motion.div
+        className="mb-12 text-center"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-400">
+          My toolkit
+        </p>
+        <h2 className="text-3xl font-extrabold md:text-5xl">
+          Technologies I <span className="text-amber-300">use</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-gray-400">
+          A practical collection of tools I use to create fast, accessible, and
+          polished digital experiences.
+        </p>
+      </motion.div>
 
-              </div>
-            </div>
-          ))}
-        </div>
-
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {skills.map(({ name, icon: Icon, color }, index) => (
+          <motion.div
+            key={name}
+            className="group rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center backdrop-blur-sm transition-colors hover:border-cyan-400/50 hover:bg-white/[0.08]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -8 }}
+          >
+            <Icon
+              className="mx-auto mb-4 text-4xl transition-transform duration-300 group-hover:scale-110"
+              style={{ color }}
+              aria-hidden="true"
+            />
+            <h3 className="text-sm font-semibold text-gray-200">{name}</h3>
+          </motion.div>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Skills;
