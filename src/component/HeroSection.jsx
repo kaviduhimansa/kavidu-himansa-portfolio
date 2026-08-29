@@ -1,7 +1,5 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaMedium, FaHome, FaUser, FaTools, FaCode, FaCertificate, FaEnvelope } from 'react-icons/fa';
-// MAKE SURE THIS PATH MATCHES YOUR ACTUAL IMAGE FILE
-import newProfilePic from '../assets/WhatsApp Image 2025-09-07 at 12.14.27_c62ea22e.jpg'; 
 
 const HeroSection = () => {
   return (
@@ -45,16 +43,6 @@ const HeroSection = () => {
 
       {/* --- MAIN CONTENT --- */}
       <div className="flex flex-col md:flex-row items-center justify-center max-w-5xl mx-auto p-8 rounded-lg">
-        
-        {/* Profile Picture Section */}
-        <div className="relative p-2 md:p-4 bg-gray-900 rounded-2xl md:mr-10 mb-8 md:mb-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-2 h-full bg-yellow-400 rounded-l-2xl"></div>
-          <img
-            src={newProfilePic}
-            alt="New Profile Picture"
-            className="relative w-64 h-auto md:w-80 md:h-auto object-contain rounded-lg ml-2"
-          />
-        </div>
         
         {/* Text Section */}
         <div className="text-center md:text-left">
