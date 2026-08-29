@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaCode, FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaArrowRight, FaCode, FaGraduationCap, FaMapMarkerAlt, FaRobot } from 'react-icons/fa';
 // Update this path if your CV file name is different
 import myCV from '../assets/kavidu.pdf'; 
 
@@ -38,6 +38,18 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
+            <motion.div
+              aria-label="Animated portfolio chatbot"
+              className="pointer-events-none absolute z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300/70 bg-slate-950 text-cyan-300 shadow-lg shadow-cyan-400/40"
+              animate={{
+                left: ['10%', '90%', '90%', '10%', '10%'],
+                top: ['12%', '12%', '88%', '88%', '12%'],
+                rotate: [0, 10, 90, 180, 360],
+              }}
+              transition={{ duration: 12, ease: 'linear', repeat: Infinity }}
+            >
+              <FaRobot size={18} />
+            </motion.div>
             <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full border border-cyan-300/20" />
             <p className="relative text-6xl font-black text-cyan-300/80">23</p>
             <p className="relative mt-2 text-xl font-bold text-white">Years old</p>
