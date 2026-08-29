@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-// 👇 THIS IMPORT WAS MISSING OR INCORRECT
-import { motion } from "framer-motion"; 
+import React, { useCallback, useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
@@ -10,7 +9,7 @@ const ScrambleText = ({ text, className }) => {
   const intervalRef = useRef(null);
   const [displayText, setDisplayText] = useState(text);
 
-  const scramble = () => {
+  const scramble = useCallback(() => {
     let pos = 0;
     clearInterval(intervalRef.current);
 
@@ -32,11 +31,12 @@ const ScrambleText = ({ text, className }) => {
         clearInterval(intervalRef.current);
       }
     }, SHUFFLE_TIME);
-  };
+  }, [text]);
 
   useEffect(() => {
     scramble();
-  }, []);
+    return () => clearInterval(intervalRef.current);
+  }, [scramble]);
 
   return (
     <motion.h2
